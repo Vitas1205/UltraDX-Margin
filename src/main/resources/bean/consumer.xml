@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:dubbo="http://dubbo.apache.org/schema/dubbo"
+       xmlns="http://www.springframework.org/schema/beans"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.3.xsd
+       http://dubbo.apache.org/schema/dubbo http://dubbo.apache.org/schema/dubbo/dubbo.xsd">
+
+    <!--data-->
+    <dubbo:reference interface="com.fota.data.service.DeliveryIndexService"  id="deliveryIndexService" registry="zkreg" group="${referenceGroup}" version="1.0.0" />
+    <dubbo:reference interface="com.fota.data.service.SpotIndexService"  id="spotIndexService" registry="zkreg" group="${referenceGroup}" version="1.0.0" />
+
+    <!--account-->
+    <dubbo:reference interface="com.fota.account.service.UserBaseService"  id="userBaseService" registry="zkreg" group="${referenceGroup}" version="1.0.0"/>
+    <dubbo:reference interface="com.fota.account.service.UserSecurityService" id="userSecurityService" registry="zkreg" group="${referenceGroup}"  version="1.0.0"/>
+
+    <!--asset-->
+    <dubbo:reference interface="com.fota.asset.service.AssetWriteService" check="false" id="assetWriteService" registry="zkreg" group="${referenceGroup}" version="1.0.0"/>
+    <dubbo:reference interface="com.fota.asset.service.AssetService" check="false" id="AssetService" registry="zkreg" group="${referenceGroup}" version="1.0.0"/>
+    <dubbo:reference interface="com.fota.asset.service.CapitalService" check="false" id="capitalService" registry="zkreg" group="${referenceGroup}" version="1.0.0"/>
+    <dubbo:reference interface="com.fota.asset.service.ContractService" check="false" id="contractService" registry="zkreg" group="${referenceGroup}" version="1.0.0"/>
+    <dubbo:reference interface="com.fota.trade.service.UsdkOrderService" check="false" id="usdkOrderService" registry="zkreg" group="${referenceGroup}" version="1.0.0" />
+    <dubbo:reference interface="com.fota.trade.service.ContractCategoryService" check="false" id="contractCategoryService" registry="zkreg" group="${referenceGroup}" version="1.0.0">
+    <dubbo:method name="rollback" async="true" timeout="180000"/>
+    </dubbo:reference>
+    <dubbo:reference interface="com.fota.trade.service.ContractOrderService" check="false"  id="contractOrderService" registry="zkreg" group="${referenceGroup}" version="1.0.0" />
+    <dubbo:reference interface="com.fota.trade.service.UserContractLeverService" check="false" id="userContractLeverService" registry="zkreg" group="${referenceGroup}" version="1.0.0" />
+    <dubbo:reference interface="com.fota.trade.service.UserPositionService" check="false" id="userPositionService" registry="zkreg" group="${referenceGroup}" version="1.0.0" />
+
+    <!-- policy -->
+    <dubbo:reference interface="com.fota.policy.service.OperateLimitService" check="false"  id="operateLimitService" registry="zkreg" group="${referenceGroup}" version="1.0.0" />
+    <dubbo:reference interface="com.fota.policy.service.OperateRecordService" check="false" id="operateRecordService" registry="zkreg" group="${referenceGroup}" version="1.0.0" />
+    <dubbo:reference interface="com.fota.policy.service.FreezeRecordService" check="false" id="freezeRecordService" registry="zkreg" group="${referenceGroup}" version="1.0.0" />
+    <dubbo:reference interface="com.fota.policy.service.OperationLimitService" check="false" id="operationLimitService" registry="zkreg" group="${referenceGroup}" version="1.0.0" />
+
+
+    <dubbo:consumer check="false" timeout="2000"> </dubbo:consumer>
+</beans>

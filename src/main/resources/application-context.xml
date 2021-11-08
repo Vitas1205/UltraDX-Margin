@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:dubbo="http://dubbo.apache.org/schema/dubbo"
+       xmlns="http://www.springframework.org/schema/beans"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.3.xsd
+       http://dubbo.apache.org/schema/dubbo http://dubbo.apache.org/schema/dubbo/dubbo.xsd">
+
+    <dubbo:application name="fota-margin"/>
+    <bean id="marginRollBackService" class="com.fota.fotamargin.service.impl.MarginRollBackServiceImpl"/>
+    <bean id="marginService" class="com.fota.fotamargin.service.impl.MarginServiceImpl"/>
+
+    <dubbo:registry check="${check-rpc:false}" address="${spring.cloud.zookeeper.connect-string}" protocol="zookeeper" id="zkreg">
+        <dubbo:parameter key="qos.enable" value="false"/>
+    </dubbo:registry>
+    <dubbo:protocol name="dubbo" port="7894"/>
+    <dubbo:service provider="" interface="com.fota.margin.service.MarginRollBackService"  ref="marginRollBackService"
+                   registry="zkreg" group="${service-group}" version="1.0.0"/>
+
+    <dubbo:service provider="" interface="com.fota.margin.service.MarginService"  ref="marginService"
+                   registry="zkreg" group="${service-group}" version="1.0.0"/>
+
+    <import resource="classpath:bean/consumer.xml" />
+
+</beans>

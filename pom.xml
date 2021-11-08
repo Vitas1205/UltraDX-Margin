@@ -1,0 +1,380 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<groupId>com.fota</groupId>
+	<artifactId>fota-margin</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+	<packaging>jar</packaging>
+
+	<name>fota-margin</name>
+	<description>Demo project for Spring Boot</description>
+
+	<parent>
+		<groupId>org.springframework.boot</groupId>
+		<artifactId>spring-boot-starter-parent</artifactId>
+		<version>2.0.3.RELEASE</version>
+		<relativePath/> <!-- lookup parent from repository -->
+	</parent>
+
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+		<java.version>1.8</java.version>
+		<spring-cloud.version>Finchley.RELEASE</spring-cloud.version>
+        <market.client.version>1.0.5</market.client.version>
+		<data.client.version>1.1.5</data.client.version>
+		<asset-client.version>1.0.7</asset-client.version>
+		<trade-client.version>1.1.3</trade-client.version>
+		<match-client.version>1.0.0</match-client.version>
+		<policy-client.version>1.0.1</policy-client.version>
+        <account.client.version>1.0.9</account.client.version>
+		<ticker.client.version>1.0.0</ticker.client.version>
+		<margin.client.version>1.0.4</margin.client.version>
+		<common.client.version>1.1.7</common.client.version>
+        <fastjson.version>1.2.47</fastjson.version>
+		<mybatis.spring.boot.version>1.3.0</mybatis.spring.boot.version>
+		<druid.version>1.1.9</druid.version>
+		<mysql.version>5.1.38</mysql.version>
+		<rocketmq.client.version>4.1.0-incubating</rocketmq.client.version>
+		<druid.starter.version>1.1.10</druid.starter.version>
+	</properties>
+
+	<dependencies>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-web</artifactId>
+			<exclusions>
+				<exclusion>
+					<groupId>org.springframework.boot</groupId>
+					<artifactId>spring-boot-starter-logging</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-starter-zookeeper-discovery</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-test</artifactId>
+			<scope>test</scope>
+			<exclusions>
+				<exclusion>
+					<groupId>org.springframework.boot</groupId>
+					<artifactId>spring-boot-starter-logging</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+
+		<!--for spring cloud config-->
+		<dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-starter-config</artifactId>
+		</dependency>
+
+		<!--log4j2-->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-log4j2</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>com.lmax</groupId>
+			<artifactId>disruptor</artifactId>
+			<version>3.3.7</version>
+		</dependency>
+
+		<!--log4j2 end-->
+
+		<dependency>
+			<groupId>org.projectlombok</groupId>
+			<artifactId>lombok</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>com.fota</groupId>
+			<artifactId>market-client</artifactId>
+			<version>${market.client.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.fota</groupId>
+			<artifactId>data-client</artifactId>
+			<version>${data.client.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.fota</groupId>
+			<artifactId>asset-client</artifactId>
+			<version>${asset-client.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.fota</groupId>
+			<artifactId>trade-client</artifactId>
+			<version>${trade-client.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.fota</groupId>
+			<artifactId>match-client</artifactId>
+			<version>${match-client.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.fota</groupId>
+			<artifactId>policy-client</artifactId>
+			<version>${policy-client.version}</version>
+		</dependency>
+
+        <dependency>
+            <groupId>com.fota</groupId>
+            <artifactId>ticker-client</artifactId>
+            <version>${ticker.client.version}</version>
+        </dependency>
+
+		<dependency>
+			<groupId>com.fota</groupId>
+			<artifactId>margin-client</artifactId>
+			<version>${margin.client.version}</version>
+		</dependency>
+
+        <dependency>
+            <groupId>com.fota</groupId>
+            <artifactId>account-client</artifactId>
+            <version>${account.client.version}</version>
+        </dependency>
+
+		<dependency>
+			<groupId>com.fota</groupId>
+			<artifactId>common-client</artifactId>
+			<version>${common.client.version}</version>
+		</dependency>
+
+		<!-- https://mvnrepository.com/artifact/com.google.guava/guava -->
+		<dependency>
+			<groupId>com.google.guava</groupId>
+			<artifactId>guava</artifactId>
+			<version>25.1-jre</version>
+		</dependency>
+
+		<!-- https://mvnrepository.com/artifact/org.apache.commons/commons-collections4 -->
+		<dependency>
+			<groupId>org.apache.commons</groupId>
+			<artifactId>commons-collections4</artifactId>
+			<version>4.2</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-data-redis</artifactId>
+			<exclusions>
+				<exclusion>
+					<groupId>org.springframework.boot</groupId>
+					<artifactId>spring-boot-starter-logging</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+
+		<dependency>
+			<groupId>redis.clients</groupId>
+			<artifactId>jedis</artifactId>
+			<version>2.9.0</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.alibaba</groupId>
+			<artifactId>fastjson</artifactId>
+			<version>${fastjson.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.alibaba</groupId>
+			<artifactId>dubbo</artifactId>
+			<version>2.6.2</version>
+		</dependency>
+
+		<!--mybatis start-->
+		<dependency>
+			<groupId>org.mybatis.spring.boot</groupId>
+			<artifactId>mybatis-spring-boot-starter</artifactId>
+			<version>${mybatis.spring.boot.version}</version>
+			<exclusions>
+				<exclusion>
+					<groupId>org.springframework.boot</groupId>
+					<artifactId>spring-boot-starter-logging</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+
+		<dependency>
+			<groupId>com.alibaba</groupId>
+			<artifactId>druid</artifactId>
+			<version>${druid.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>mysql</groupId>
+			<artifactId>mysql-connector-java</artifactId>
+			<version>${mysql.version}</version>
+		</dependency>
+		<!--mybatis end-->
+
+		<!-- https://mvnrepository.com/artifact/org.apache.rocketmq/rocketmq-client -->
+		<dependency>
+			<groupId>org.apache.rocketmq</groupId>
+			<artifactId>rocketmq-client</artifactId>
+			<version>${rocketmq.client.version}</version>
+		</dependency>
+
+		<!-- https://mvnrepository.com/artifact/org.apache.commons/commons-lang3 -->
+		<dependency>
+			<groupId>org.apache.commons</groupId>
+			<artifactId>commons-lang3</artifactId>
+			<version>3.7</version>
+		</dependency>
+
+
+		<!--email-->
+		<dependency>
+			<groupId>com.aliyun</groupId>
+			<artifactId>aliyun-java-sdk-core</artifactId>
+			<version>3.0.0</version>
+		</dependency>
+		<dependency>
+			<groupId>com.aliyun</groupId>
+			<artifactId>aliyun-java-sdk-dm</artifactId>
+			<version>3.1.0</version>
+		</dependency>
+
+		<!--sms-->
+		<dependency>
+			<groupId>com.github.qcloudsms</groupId>
+			<artifactId>sms</artifactId>
+			<version>0.9.2</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.fota</groupId>
+			<artifactId>elastic-job-lite-core-millis</artifactId>
+			<version>1.1.0-SNAPSHOT</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.fota</groupId>
+			<artifactId>elastic-job-lite-core</artifactId>
+			<version>1.1.0-SNAPSHOT</version>
+		</dependency>
+
+		<!-- https://mvnrepository.com/artifact/com.google.guava/guava -->
+		<dependency>
+			<groupId>com.google.guava</groupId>
+			<artifactId>guava</artifactId>
+			<version>26.0-jre</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.alibaba</groupId>
+			<artifactId>druid-spring-boot-starter</artifactId>
+			<version>${druid.starter.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-actuator</artifactId>
+			<exclusions>
+				<exclusion>
+					<groupId>org.springframework.boot</groupId>
+					<artifactId>spring-boot-starter-logging</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+		<dependency>
+			<groupId>io.micrometer</groupId>
+			<artifactId>micrometer-registry-prometheus</artifactId>
+		</dependency>
+	</dependencies>
+
+	<dependencyManagement>
+		<dependencies>
+			<dependency>
+				<groupId>org.springframework.cloud</groupId>
+				<artifactId>spring-cloud-dependencies</artifactId>
+				<version>${spring-cloud.version}</version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
+		</dependencies>
+	</dependencyManagement>
+
+	<build>
+		<finalName>fota-margin</finalName>
+		<plugins>
+			<plugin>
+				<groupId>org.jacoco</groupId>
+				<artifactId>jacoco-maven-plugin</artifactId>
+				<version>0.8.1</version>
+				<executions>
+					<execution>
+						<id>prepare-agent</id>
+						<goals>
+							<goal>prepare-agent</goal>
+						</goals>
+					</execution>
+					<execution>
+						<id>report</id>
+						<phase>prepare-package</phase>
+						<goals>
+							<goal>report</goal>
+						</goals>
+					</execution>
+					<execution>
+						<id>post-unit-test</id>
+						<phase>test</phase>
+						<goals>
+							<goal>report</goal>
+						</goals>
+						<configuration>
+							<!-- Sets the path to the file which contains the execution data. -->
+
+							<dataFile>target/jacoco.exec</dataFile>
+							<!-- Sets the output directory for the code coverage report. -->
+							<outputDirectory>target/jacoco-ut</outputDirectory>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+
+			<plugin>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-maven-plugin</artifactId>
+			</plugin>
+
+			<plugin>
+				<groupId>org.mybatis.generator</groupId>
+				<artifactId>mybatis-generator-maven-plugin</artifactId>
+				<version>1.3.6</version>
+				<configuration>
+					<verbose>true</verbose>
+					<overwrite>true</overwrite>
+				</configuration>
+				<dependencies>
+					<!-- https://mvnrepository.com/artifact/mysql/mysql-connector-java 配置这个依赖主要是为了等下在配置MG的时候可以不用配置classPathEntry这样的一个属性，避免
+                        代码的耦合度太高 -->
+					<dependency>
+						<groupId>mysql</groupId>
+						<artifactId>mysql-connector-java</artifactId>
+						<version>5.1.38</version>
+					</dependency>
+				</dependencies>
+			</plugin>
+		</plugins>
+	</build>
+
+
+
+</project>

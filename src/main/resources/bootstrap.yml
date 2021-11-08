@@ -1,0 +1,23 @@
+spring:
+  application:
+    name: fota-margin
+  cloud:
+    zookeeper:
+      connect-string: ${ZOOKEEPER_SERVER:172.16.50.183:2181,172.16.50.184:2181,172.16.50.185:2181}
+    config:
+      profile: ${SPRING_PROFILE:dev}
+      label: master
+      discovery:
+        enabled: true
+        service-id: fota-config-server-zk
+
+serviceGroup:  ${SPRING_SERVICE:dev}
+referenceGroup: ${SPRING_REFERENCE:dev}
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  server:
+    servlet:
+      context-path: /monitor
